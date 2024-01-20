@@ -62,14 +62,22 @@
 \addsection{Chapter 2: Vectors in Space}
 
 \begin{multicols}{2}[Graphing]
-  TEMPLATE
-
-  TEMPLATE
+  \col{
+    \centering
+    \includegraphics{3d_space.png}
+    \emph{convention}
+  }
+  \col{
+    \centering
+    \includegraphics{sphere.png}
+    \emph{sphere:} $(x-1)^2 + (y-2)^2 + (z+3)^2 = 9$
+  }
 \end{multicols}
 
 \begin{multicols}{2}[The Vector]
   \col{
-    ex image here
+    \centering
+    \includegraphics{vector.png}
   }
   \col{
     \begin{itemize}
@@ -110,7 +118,7 @@
       \begin{itemize}
         \item geom.:
         
-        img \\
+        \includegraphics{dot_prod.png} \\
         $\vec{u} \cdot \vec{v} = \magn{\vec{u}} \magn{\vec{v}}\cos \theta$
         \item alg.:
         
@@ -123,7 +131,7 @@
         \item work $= \vec{F} \cdot \vec{D}$
         \item $\comp$ (scalar projection)
         \begin{align*}
-          \comp_{\vec{v}} \vec{u} & = \magn{\vec{v}} \cos \theta \\
+          \comp_{\vec{u}} \vec{v} & = \magn{\vec{v}} \cos \theta \\
           & = \frac{\vec{u} \cdot \vec{v}}{\magn{\vec{u}}}
         \end{align*}
         \item $\proj$ (vector projection)
@@ -140,7 +148,7 @@
       \begin{itemize}
         \item geom.:
         
-        img\\
+        \includegraphics{cross_prod.png}\\
         $\magn{\vec{u}\times\vec{v}} = \magn{\vec{{u}}}\magn{\vec{v}}\sin\theta$
         \item alg.:
         \item $\vec{u} \times \vec{v} = \det\begin{vmatrix}
@@ -169,6 +177,11 @@
 \newpage
 \addsection{Appendix} 
 \subsection*{matrices, 3x3 determinants}
+In depth lesson:
+\begin{itemize}
+  \item \url{https://www.mathcentre.ac.uk/resources/uploaded/sigma-matrices9-2009-1.pdf}
+\end{itemize}
+
 Recall that a elements of a matrix are enumerated $a_{ij}$ where $i$ is column and $j$ is row, both 1-indexed. 
 \[\begin{bmatrix}
   a_{11} & a_{12} & a_{13}\\
@@ -183,9 +196,9 @@ In the figure \texttt{media/3x3determinant.png}, $(-1)^{i+j}$ is in green, $a_{i
 \begin{itemize}
   \item see:
   \begin{itemize}
-    \item \texttt{media/cross\_prod\_area\_ex.png}
-    \item \texttt{media/scalar\_projection\_composition\_ex.png}
-    \item \texttt{media/scalar\_triple\_prod\_parallelepiped\_ex.png}
+    \item \url{media/cross_prod_area_ex.png}
+    \item \url{media/scalar_projection_composition_ex.png}
+    \item \url{media/scalar_triple_prod_parallelepiped_ex.png}
   \end{itemize}
 \end{itemize}
 
