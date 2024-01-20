@@ -39,10 +39,14 @@
 \newtheorem{example}[theorem]{Example}
 
 % Custom per each document
-\newcommand{\addsection}[1]{\newpage\section*{#1}\addcontentsline{toc}{section}{#1}} % for adding \section*{} sections to \tableofcontents
+\newcommand{\addsection}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}} % for adding \section*{} sections to \tableofcontents
 \newcommand{\bb}[1]{\mathbb{#1}} % love of my life
 % \newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
 % \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\col}[1]{\begin{minipage}{\columnwidth}#1\end{minipage}}
+\newcommand{\magn}[1]{\left\lVert #1 \right\rVert}
+\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\comp}{comp}
 
 \graphicspath{ {./media/} }
 
@@ -54,32 +58,141 @@
 %% Start of document body %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\addsection{test}
-Hello world! Did you know that $3^2 + 4^2 = 5^2$?
-\begin{multicols}{3}
-  [
-  All human things are subject to decay. And when fate summons, Monarchs must obey.
-  ]
-  
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut finibus eros et nisi porttitor, ultrices tempor diam blandit. Praesent bibendum nibh sed volutpat facilisis. Vestibulum massa ex, congue nec felis quis, maximus ultricies erat. Mauris lobortis nibh ut tempus placerat. Proin ut condimentum nibh. Proin bibendum ligula nibh, at pulvinar nisl efficitur eu. Fusce venenatis, purus ut lacinia malesuada, nisi turpis sollicitudin enim, sed tristique elit ex a mi. Fusce laoreet sodales purus at blandit. Interdum et malesuada fames ac ante ipsudm primis in faucibus.  \end{multicols}
-  
 \newpage
-\addsection{Appendix}
+\addsection{Chapter 2: Vectors in Space}
+
+\begin{multicols}{2}[Graphing]
+  TEMPLATE
+
+  TEMPLATE
+\end{multicols}
+
+\begin{multicols}{2}[The Vector]
+  \col{
+    ex image here
+  }
+  \col{
+    \begin{itemize}
+      \item a quantity with a magnitude and direction
+      \item unit vector $\displaystyle\hat{u} =\frac{\vec{v}}{\lVert \vec{v} \rVert}$
+    \end{itemize}
+  }
+\end{multicols}
+
+\newpage
+\begin{multicols}{3}[Vector Operations]
+  \col{
+    \begin{itemize}
+      \item Addition
+      \begin{itemize}
+        \item $\vec{a} = \left< 1,2 \right>$,  $\vec{b} = \left< 3,4 \right>$
+        \item $\vec{a} + \vec{b} = \left< 4,6 \right>$
+      \end{itemize}
+    \end{itemize}
+  }
+  \col{
+    \begin{itemize}
+      \item Scalar Multiplication
+      \begin{itemize}
+        \item $\vec{v} = \left< 1,3 \right>$, $c = 2$
+        \item $c\vec{v} = \left< 2,6 \right>$
+      \end{itemize}
+    \end{itemize}
+  }
+  \col{
+    simple inverses for subtraction and scalar division exist.
+  }
+\end{multicols}
+\begin{multicols}{2}
+  \col{
+    \begin{itemize}
+      \item Dot Product (also 2d!)
+      \begin{itemize}
+        \item geom.:
+        
+        img \\
+        $\vec{u} \cdot \vec{v} = \magn{\vec{u}} \magn{\vec{v}}\cos \theta$
+        \item alg.:
+        
+        $\vec{u} = \left< u_1, u_2, u_3 \right>$, 
+        $\vec{v} = \left< v_1, v_2, v_3 \right>$\\
+        $\vec{u} \cdot \vec{v} = \sum u_i v_i$
+        \item $\vec{v}\cdot\vec{v} = \magn{\vec{v}}^2$
+        \item two vectors are orthogonal aka $\perp$ iff their dot product is $0$
+        \item $\displaystyle\cos \theta = \frac{\vec{u} \cdot \vec{v}}{\magn{u}\magn{v}}$ wtf is equation 2.5 "unique over this range" on abt
+        \item work $= \vec{F} \cdot \vec{D}$
+        \item $\comp$ (scalar projection)
+        \begin{align*}
+          \comp_{\vec{v}} \vec{u} & = \magn{\vec{v}} \cos \theta \\
+          & = \frac{\vec{u} \cdot \vec{v}}{\magn{\vec{u}}}
+        \end{align*}
+        \item $\proj$ (vector projection)
+        \begin{align*}
+          \proj_{\vec{u}} \vec{v} &= \comp_{\vec{u}} \vec{v} \cdot \frac{\vec{u}}{\magn{\vec{v}}} \\
+          &= \frac{\vec{u}\cdot\vec{v}}{\magn{\vec{u}}^2}\vec{u}
+        \end{align*}
+      \end{itemize}
+    \end{itemize}
+  }
+  \col{
+    \begin{itemize}
+      \item Cross Product (3d)
+      \begin{itemize}
+        \item geom.:
+        
+        img\\
+        $\magn{\vec{u}\times\vec{v}} = \magn{\vec{{u}}}\magn{\vec{v}}\sin\theta$
+        \item alg.:
+        \item $\vec{u} \times \vec{v} = \det\begin{vmatrix}
+          \hat{\i} & \hat{\j} & \hat{k}\\
+          u_1 & u_2 & u_3 \\
+          v_1 & v_2 & v_3
+        \end{vmatrix}$
+        \item result is $\perp$ to both input vectors, \\
+        direction by right hand rule
+        \item triple scalar product: \\
+        $\vec{u} \cdot (\vec{v}\times\vec{w}) \\ 
+        = (\vec{u}\times\vec{v})\cdot\vec{w} \\
+        = \det\begin{vmatrix}
+          u_1 & u_2 & u_3 \\
+          v_1 & v_2 & v_3 \\
+          w_1 & w_2 & w_3
+        \end{vmatrix}$
+        \item areas and volumes (see appendix) \\
+        if $\vec{u}$ and $\vec{v}$ are the sides of a parallelogram, then its area is $\magn{\vec{u}\times\vec{v}}$ \\
+        if a parallelepiped has edges $\vec{u}, \vec{v}, \vec{w}$, its volume is the absolute value of its triple scalar product
+        \item torque $= \vec{\tau} = \vec{r} \times \vec{F}$
+      \end{itemize}
+    \end{itemize}
+  }
+\end{multicols}
+
+\newpage
+\addsection{Appendix} 
 \subsection*{matrices, 3x3 determinants}
 Recall that a elements of a matrix are enumerated $a_{ij}$ where $i$ is column and $j$ is row, both 1-indexed. 
 \[\begin{bmatrix}
   a_{11} & a_{12} & a_{13}\\
   a_{21} & a_{22} & a_{23}
 \end{bmatrix}\]
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.5]{3x3determinant}
-\end{figure}
 
 Recall that the minor of the matrix element here is the 2 by 2 determinant when you take away the row and column of the element in a 3 by 3 matrix.  Picking an arbitrary row (or even column), with $a_{ij}$ being an element and $M_{ij}$ being a minor, a 3 by 3 determinant is calculated by 
 \[ \sum_{j=1}^{3} (-1)^{i+j} a_{ij} M_{ij} \]
-In the figure above, $(-1)^{i+j}$ is in green, $a_{ij}$ in orange, and $M_{ij}$ in blue.
+In the figure \texttt{media/3x3determinant.png}, $(-1)^{i+j}$ is in green, $a_{ij}$ in orange, and $M_{ij}$ in blue.
+
+\subsection*{cross/dot products}
+\begin{itemize}
+  \item see:
+  \begin{itemize}
+    \item \texttt{media/cross\_prod\_area\_ex.png}
+    \item \texttt{media/scalar\_projection\_composition\_ex.png}
+    \item \texttt{media/scalar\_triple\_prod\_parallelepiped\_ex.png}
+  \end{itemize}
+\end{itemize}
+
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
