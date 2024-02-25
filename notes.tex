@@ -226,14 +226,7 @@
     \end{itemize}
   }
   \col{
-    intentionally blank
-  }
-\end{multicols}
-
-\newpage
-\addsection{Chapter 3: Vector-Valued Functions}
-\begin{multicols}{2}
-  \col{
+    \addsection{Chapter 3: Vector-Valued Functions}
     Vector-Valued Function
     $${\vec{r}(t) = \left<f(t), g(t), h(t)\right>}, i < t < j$$
 
@@ -253,8 +246,211 @@
       \item unit tangent vector is the derivative's unit vector
       \item integrals are intuitive. consider constant vector $C$ instead of scalar constant
     \end{itemize}
+
+    Consult exam 1 cheatsheet for notes on the rest of the chapter
+  }
+\end{multicols}
+
+\newpage
+\addsection{Chapter 4: Differentiation}
+\begin{multicols}{2}
+  \col{
+    Functions of Multiple Variables
+    \begin{itemize}
+      \item domain: analyze what values are invalid
+      \item range: image of domain
+      \item level planes/level surfaces/contour maps: setting the function to some constant and drawing out the resulting shape 
+    \end{itemize}
+
+    Limits and Continuity
+    \begin{itemize}
+      \item limit rules are identical to 2d, including
+      \item limits must be unique. ie, the $\delta$ disk around a point must only contain one value. (disprove limit by finding different values through different ``paths'' to the limit)
+      \item as in 2d, $f(x,y)$ is continuous at $(a,b)$ iff
+      \[  \lim_{(x,y)\rightarrow(a,b)}f(x,y) = f(a,b)\]
+      with both defined.
+      \item sum, product, comp of cont functions: cont
+    \end{itemize}
+
+    Partial Derivatives
+    \begin{itemize}
+      \item slope of line in a direction, at a point
+      \item Limit definition:
+      \[ \frac{\partial f}{\partial x} = \lim_{h\rightarrow 0}\frac{f(x+h,y)-f(x,y)}{h}\]
+      \item four second order partials exist
+      \begin{gather*}
+        \frac{\partial^2 f}{\partial x^2} = \frac{\partial}{\partial x}\left[\frac{\partial f}{\partial x}\right] = f_{xx} \\
+        \frac{\partial^2 f}{\partial x\partial y} = \frac{\partial}{\partial x}\left[\frac{\partial f}{\partial y}\right] = f_{yx} \\
+        \frac{\partial^2 f}{\partial y\partial x} = \frac{\partial}{\partial y}\left[\frac{\partial f}{\partial x}\right] = f_{xy} \\
+        \frac{\partial^2 f}{\partial y^2} = \frac{\partial}{\partial y}\left[\frac{\partial f}{\partial y}\right] = f_{yy} \\
+      \end{gather*}
+      \item Clairaut's Thrm: if $f_{xy}$ and $f_{yx}$ are cont near a point, they are equal
+    \end{itemize}
   }
   \col{
+    Tangent Planes
+    \begin{itemize}
+      \item if all tangent lines to a point are in the same plane, call that the tangent plane
+      \begin{itemize}
+        \item (not true if there is a point)
+        \item maybe theres a correlation somewhere with differentiability? (p393)
+      \end{itemize}
+      \item the tangent plane to $z = f(x,y)$ at $(a,b)$ is 
+      \[ z = f(a,b) + f_x(a,b)(x-a) + f_y(a,b)(y-b) \]
+      \item find an approx at $(a,b)$ via the linear approximation plane $L(x,y) = $ RHS (above)
+      \item a function is differentiable at $(a,b)$ iff
+      \[ f(x,y) = \text{RHS} + E(x,y) \]
+      where the error term $E$ satisfies
+      \[ \lim_{(x,y)\rightarrow(a,b)}\frac{E(x,y)}{\sqrt{(x-a)^2+(y-b)^2}} = 0. \]
+      alternatively, if $f$, $f_x$, and $f_y$ exist near $(a,b)$ and are cont. at $(a,b)$, then $f$ is differentiable there.
+      \item let $z=f(x,y)$ with $(a,b)$ in the domain of $f$, and let $\Delta x$ and $\Delta y$ be chosen such that $(a+\Delta x,b+\Delta y)$ is also in the domain of $f$.
+      
+      then
+      \begin{gather*}
+        dx = \Delta x \\
+        dy = \Delta y \\
+        dz = f_x(a,b)dx + f_y(a,b)dy.
+      \end{gather*}
+      $dx$ and $dy$ are differentials, $dz$ the ``total differential,'' and we estimate error with it.
+
+      notice the similarity to the tangent plane equation.
+    \end{itemize}
+  }
+\end{multicols}
+
+\begin{multicols}{2}
+  \col{
+    The Chain Rule
+    \begin{itemize}
+      \item consider
+      \begin{gather*}
+        w=f(x,y,z) \\
+        x = x(t,u,v) \\
+        y = y(t,u,v) \\
+        z = z(t,u,v) \\
+        \includegraphics{chain_rule_treediagram.png}.
+      \end{gather*}
+      then,
+      \begin{gather*}
+        \frac{\partial w}{\partial t} = 
+          \frac{\partial w}{\partial w}\frac{\partial x}{\partial t}
+          + \frac{\partial w}{\partial y}\frac{\partial y}{\partial t}
+          + \frac{\partial w}{\partial z}\frac{\partial z}{\partial t}.
+      \end{gather*}
+      others are left as an exercise to the reader.
+    \end{itemize}
+
+    Implicit Differentiation
+    \begin{itemize}
+      \item consider $x^2 + 3y^2 + 4y - 4 = 0$. 
+      
+      to find $\frac{dy}{dx}$, we may implicitly differentiate this by taking $\frac{d}{dx}$ of both sides and solving.
+
+      but we may also define 
+      \[ f(x,y) = x^2 + 3y^2 + 4y - 4, f(x,y) = 0.\]
+      with this in mind, suppose $f(x,y)=0$. then,
+      \[ \frac{dy}{dx} = -\frac{\partial f/\partial x}{\partial f/\partial y} \]
+      and if $f(x,y,z) = 0$,
+      \[ \frac{\partial z}{\partial x} = -\frac{\partial f/\partial x}{\partial f/\partial z}, \frac{\partial z}{\partial y} = -\frac{\partial f/\partial y}{\partial f/\partial z}.\]
+      these can be derived from the chain rule.
+    \end{itemize}
+  }
+  \col{
+    Directional Derivatives and the Gradient
+    \begin{itemize}
+      \item the directional derivative of $f(x,y)$ in the direction $\hat{u} = \left<\cos\theta, \sin\theta\right>$ is
+      \[ D_{\hat{u}}f(a,b) = \lim_{h\rightarrow 0}\frac{f(a+h\cos\theta, b+h\sin\theta)-f(a,b)}{h}\]
+      alternatively, if the partials exist,
+      \begin{align*}
+        D_{\hat{u}}f(x,y) &= f_x(x,y)\cos\theta + f_y(x,y)\sin\theta \\
+        &= \left<\,f_x(x,y), f_y(x,y)\,\right> \cdot \hat{u} \\
+        % &= [\,f_x(x,y)\hat{\i} + f_y(x,y)\hat{\j}\,] \cdot \hat{u} \\
+        &= \nabla f(x,y) \cdot \hat{u}.
+      \end{align*}
+      \item $\nabla f(x,y)$ is called the gradient and points toward the greatest increase of a function. it's perpendicular to the graph's level curves (if the partials are cont. near the points)
+      \item suppose $z=f(x,y)$ diffbl at $(a,b)$.
+      \begin{itemize}
+        \item if $\nabla f(a,b) = \vec{0}$, then $D_{\hat{u}}f(a,b) = 0$ for any $\hat{u}$
+        \item if $\nabla f(a,b) \ne \vec{0}$, then $D_{\hat{u}}f(a,b)$ is max when $\hat{u}$ is in the same direction as $\nabla f(a,b)$.
+        
+        max of $D_{\hat{u}}f(a,b)$ is $\magn{\nabla f(a,b)}$
+        \item if $\nabla f(a,b) \ne \vec{0}$, then $D_{\hat{u}}f(a,b)$ is min when $\hat{u}$ is in the opposite direction as $\nabla f(a,b)$.
+        
+        min of $D_{\hat{u}}f(a,b)$ is $-\magn{\nabla f(a,b)}$
+      \end{itemize}
+      \item yes, these work for multivar funcs.
+    \end{itemize}    
+    TODO do example 4.34-5 on page 429 and onwards 
+  }
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+  \col{
+    Finding Maxima/Minima
+    \begin{itemize}
+      \item like 2d, critical points $(a,b)$ exist iff
+      \begin{itemize}
+        \item $f_x(a,b) = f_y(a,b) = 0$ 
+        \item or the partials there don't exist
+      \end{itemize} 
+      \item local extrema are crit points
+      \item Second Derivative Test (for 3d calc)
+      
+      let $z=f(x,y)$ where the first and second order partials are cont near a point $(a,b)$
+      \[ D = f_{xx}(a,b)f_{yy}(a,b)-(f_{xy}(a,b))^2 \]
+      \begin{itemize}
+        \item $D > 0$ and $f_{xx}(a,b) > 0$
+        
+        $\Rightarrow f$ has a local min at $(a,b)$
+        \item $D > 0$ and $f_{xx}(a,b) < 0$
+        
+        $\Rightarrow f$ has a local max at $(a,b)$
+        \item $D < 0$
+        
+        $\Rightarrow f$ has a saddle point at $(a,b)$
+        \item $D = 0$
+        
+        $\Rightarrow$ the test is inconclusive
+      \end{itemize}
+      \item to find local extrema:
+      \begin{enumerate}
+        \item find crit points. discard if a partial DNE
+        \item find discriminant $D$ for each point
+        \item apply 2nd derivative test
+      \end{enumerate}
+      \item Extreme Value Theorem
+
+      a cont function on a closed and bounded set has an abs min and abs max in the set
+      \item the abs max and abs min will be either at a critical point or on a boundry
+      \item to analyze the boundry, consider parameterizing line segments/ellipses or using Lagrange multipliers
+    \end{itemize}
+  }
+  \col{
+    Lagrange Multipliers
+    \begin{itemize}
+      \item Theory: consider an objective function and a constraint function. when they are tangent, their gradients must be in the same direction. so, we say they are different by $\lambda$, the Lagrange multiplier.
+      \item Let $f(x,y)$ and $g(x,y)$ have cont partials along $g(x,y)=0$. if $f$ has a local extrema on $g(x,y)=0$ at $(a,b)$ and $\nabla g(a,b) \ne 0$, then
+      \[ \nabla f(a,b) = \lambda \nabla g(a,b) \]
+      \item to use $\lambda$ (yes, $f$ and $g$ may be fn of 3 vars):
+      \begin{enumerate}
+        \item find the objective function $f(x,y)$, constraint function $g(x,y)$.
+        \item solve for $a$ and $b$ using
+        \begin{gather*}
+          \nabla f(a,b) = \lambda\nabla g(a,b) \\
+          g(a,b)=0
+        \end{gather*}
+        \item largest value of $f$ will be largest among all $f(a,b)$ found. similar for smallest.
+      \end{enumerate}
+      \item alternatively, with two constraints:
+      
+      let obj fn be $w=f(x,y,z)$, and constraint fns $g(x,y,z)=0$, $h(x,y,z)=0$. solve for
+      \begin{gather*}
+        \nabla f(a,b,c) = \lambda_1\nabla g(a,b,c) + \lambda_2\nabla h(a,b,c) \\
+        g(a,b,c) = 0 \\
+        h(a,b,c) = 0.
+      \end{gather*}
+    \end{itemize}
   }
 \end{multicols}
 
