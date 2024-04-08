@@ -380,7 +380,6 @@
       \end{itemize}
       \item yes, these work for multivar funcs.
     \end{itemize}    
-    TODO do example 4.34-5 on page 429 and onwards 
   }
 \end{multicols}
 
@@ -452,6 +451,10 @@
       \end{gather*}
     \end{itemize}
     TODO CLOSED/OPEN SETS AND STUFF
+    \begin{itemize}
+      \item $S$ is called an open set if every point of S is an interior point.
+      \item $S$ is called a closed set if it contains all its boundary points.
+    \end{itemize}
   }
 \end{multicols}
 
@@ -504,17 +507,89 @@
       \includegraphics{spherical_coords.png}
       \item rect to spherical: $\rho^2=x^2+y^2+z^2$,\\ $\tan\theta=\frac{y}{x},\phi=\cos^{-1}(\frac{z}{\sqrt{x^2+y^2+z^2}})$
       
-      $dV=\rho^2\sin\phi \,d\rho \,d\theta \,d\phi$ usually best?
+      $dV=\rho^2\sin\phi \,d\rho \,d\phi \,d\theta$ usually best
       \item cyl to spherical: $\rho^2 = r^2 + z^2$,\\ $\theta=\theta, \phi=\cos^{-1}(\frac{z}{\sqrt{r^2+z^2}})$
       \item spherical to rect: $x=\rho\sin\phi\cos\theta$, \\$y=\rho\sin\phi\sin\theta,z=\rho\cos\phi$
       \item spherical to cyl: $r=\rho\sin\phi,$\\$\theta=\theta,z=\rho\cos\phi$
     \end{itemize}
   }
 \end{multicols}
-  
+
+\begin{multicols}{2}
+  \col{
+    Centers of Mass, Moments of Inertia
+    \begin{itemize}
+      \item consider a lamina (2d object). its center of mass $P(\overline{x},\overline{y})$ is defined by
+      \[ \overline{x} = \frac{M_y}{m} \text{ and } \overline{y} = \frac{M_x}{m}. \]
+      (if density is constant, $P(\overline{x},\overline{y})$ is the centroid.)
+
+      \item the moments about the $x$ and $y$ axes are
+      \begin{gather*}
+        M_x = \iint\limits_R y\rho(x,y)dA \\
+        M_y = \iint\limits_R x\rho(x,y)dA
+      \end{gather*}
+      \item the moments of inertia about the axes are
+      \begin{gather*}
+        I_x = \iint\limits_R y^2\rho(x,y)dA \\
+        I_y = \iint\limits_R x^2\rho(x,y)dA
+      \end{gather*}
+      and about the origin (the polar m. of i.):
+      \[ I_0 = I_x + I_y = \iint\limits_R (x^2+y^2)\rho(x,y)dA \]
+      \item also consider:
+    \end{itemize}
+    \includegraphics[width=\textwidth]{3d_moments_of_inertia.png}
+  }
+  \col{
+
+  }
+\end{multicols}
+
+\newpage
+\addsection{Chapter 6: Vector Calc}
+\begin{multicols}{2}
+  \col{
+    Conservative Vector Fields
+    \begin{itemize}
+      \item a vector field $\vec{F}$ is a gradient/conservative vec field iff $\exists f, \nabla f = \vec{F}$
+      \begin{itemize}
+        \item $f$ is called a potential function
+      \end{itemize}
+      \item potential functions are unique to a constant (because they're found sorta with antiderivs??). ie, if $\nabla f = \nabla g = \vec{F}$, then $f = g + C$.
+      \item to prove a field is not conservative:
+      \begin{itemize}
+        \item if $\vec{F}(x,y) = \left<P(x,y), Q(x,y)\right>$ \\ $\Rightarrow \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$.
+        \item if $\vec{F} = \left<P, Q, R\right>$\\ $\Rightarrow \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} \land \frac{\partial Q}{\partial z} = \frac{\partial R}{\partial y} \land \frac{\partial R}{\partial x} = \frac{\partial P}{\partial z}$
+        \item use the contrapos.
+      \end{itemize}
+      \item to prove it is
+      \begin{itemize}
+        \item use the converse of above, only if $\vec{F}$ is on a open, simply connected region through which the converse holds
+      \end{itemize}
+    \end{itemize}
+    Line Integrals
+    \begin{itemize}
+      \item scalar line integral (along curve in space)
+      \begin{itemize}
+        \item let $f$ be cont with a domain that includes the smooth curve $C$ with parameterization $\vec{r}(t), a\le t\le b$.
+        \[ \int_C f\, ds = \int_a^b f(\vec{r}(t))\magn{\vec{r}\,'(t)} dt. \]
+        \item idc about reparameterization
+        \item $f=1$ finds arclen
+      \end{itemize}
+      \item vector line integral (along oriented curve)
+      \item find work to move object along curve in a vec field
+      \item flux and circulation of a vec field
+    \end{itemize}
+  }
+\end{multicols}
+
 \newpage
 \addsection{Appendix} 
 Sorted newest first
+
+\subsection*{centers of mass, moments of inertia}
+think of moments about axes like how much a lamina wants to rotate about the axis. then the moment / the mass is simply the center of mass. uhh, trust.
+
+and then moments of inertia measure how much objects can resist rotation about axes
 
 \subsection*{double integral properties}
 for most properties, just feel it out from single integrals.
