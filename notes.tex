@@ -521,25 +521,61 @@
     \begin{itemize}
       \item consider a lamina (2d object). its center of mass $P(\overline{x},\overline{y})$ is defined by
       \[ \overline{x} = \frac{M_y}{m} \text{ and } \overline{y} = \frac{M_x}{m}. \]
-      (if density is constant, $P(\overline{x},\overline{y})$ is the centroid.)
-
-      \item the moments about the $x$ and $y$ axes are
-      \begin{gather*}
-        M_x = \iint\limits_R y\rho(x,y)dA \\
-        M_y = \iint\limits_R x\rho(x,y)dA
-      \end{gather*}
+      where mass is obtained by integrating $\rho$ over the domain, and moments about the $x$ and $y$ axes are
+      \[ M_x = \iint\limits_R y\rho(x,y)dA, M_y = \iint\limits_R x\rho(x,y)dA. \]
+      (constant density? $P(\overline{x},\overline{y})$ is the centroid.)
       \item the moments of inertia about the axes are
-      \begin{gather*}
-        I_x = \iint\limits_R y^2\rho(x,y)dA \\
-        I_y = \iint\limits_R x^2\rho(x,y)dA
-      \end{gather*}
+      \[ I_x = \iint\limits_R y^2\rho(x,y)dA, I_y = \iint\limits_R x^2\rho(x,y)dA \]
       and about the origin (the polar m. of i.):
-      \[ I_0 = I_x + I_y = \iint\limits_R (x^2+y^2)\rho(x,y)dA \]
-      \item also consider:
+      \[ I_0 = I_x + I_y = \iint\limits_R (x^2+y^2)\rho(x,y)dA. \]
+      (transforming to polar works for all these)
+      \item radius of gyration about axes (anal rot?):
+      \[ R_x = \sqrt{\frac{I_x}{m}}, R_y = \sqrt{\frac{I_y}{m}}, R_0 = \sqrt{\frac{I_0}{m}} \]
+      \item also consider 3d:
+      
+      for center mass, $\overline{x}=\frac{M_x}{m}, \dots$
+
+      mass $m$ is similar.
+
+      moments about the \emph{axes}:
+      \[ M_x=\iiint\limits_Q x\rho(x,y,z)dV, \dots \]
+      moments of inertia about the \emph{axes}
+      \[ I_x = \iiint\limits_Q (y^2+z^2)\rho(x,y,z)dV, \dots \]
     \end{itemize}
-    \includegraphics[width=\textwidth]{3d_moments_of_inertia.png}
   }
   \col{
+    Multivar Change of Variables (like ``$u$-sub'')
+
+    \begin{itemize}
+      \item planar transformations
+      \begin{itemize}
+        \item let $G,R\subseteq \mathbb{R}^2$. a pl. trans. is a fn $T:G\rightarrow R$, transes $G$ region to $R$, via $x=g(u,v), y=h(u,v)$.
+        
+        (typically assume/require first partials $\exists$ and are cont. ie, $C^1$ trans.)
+        \includegraphics[width=2.7in]{planar_transformations_for_usub.png}
+        a trans, $T: G\rightarrow R, T(u,v)=(x,y)$ is one to one iff 2 distinct points cannot map to the same output. ie, $(\forall G_1, G_2\in G)(T(G_1) = T(G_2) \Rightarrow G_1 = G_2)$ 
+
+        if $T$ is one to one, $(\exists T^{-1})(T^{-1}\circ T, T\circ T^{-1})$ are id. fns.
+
+        finding $\text{Im}_T G$? can try eval. each section of $G$'s boundry thru T.
+      \end{itemize}
+      \item Jacobians:
+      \[ J(u,v) = \frac{\partial(x,y)}{\partial(u,v)} = \begin{vmatrix}
+        \frac{\partial{x}}{\partial{u}}& \frac{\partial{x}}{\partial{v}} \\
+        \frac{\partial{y}}{\partial{u}}& \frac{\partial{y}}{\partial{v}}
+      \end{vmatrix}. \]
+      The same pattern holds for 3d.
+      \item changing variables strategy:
+      \begin{enumerate}
+        \item sketch integration region ($xy$ plane)
+        \item examine region/bounds and integrand, choose $u=\dots, v=\dots$
+        \item find bounds in $uv$ plane
+        \item evaluate jacobian
+        \item substitute bounds, replace $dA$ with $J(u,v)\,du\,dv$.
+      \end{enumerate}
+    \end{itemize}
+
+
 
   }
 \end{multicols}
@@ -550,34 +586,180 @@
   \col{
     Conservative Vector Fields
     \begin{itemize}
+      \item defns: simple curve: no crossings. simply connected region: no holes.
       \item a vector field $\vec{F}$ is a gradient/conservative vec field iff $\exists f, \nabla f = \vec{F}$
       \begin{itemize}
         \item $f$ is called a potential function
       \end{itemize}
-      \item potential functions are unique to a constant (because they're found sorta with antiderivs??). ie, if $\nabla f = \nabla g = \vec{F}$, then $f = g + C$.
-      \item to prove a field is not conservative:
-      \begin{itemize}
-        \item if $\vec{F}(x,y) = \left<P(x,y), Q(x,y)\right>$ \\ $\Rightarrow \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$.
-        \item if $\vec{F} = \left<P, Q, R\right>$\\ $\Rightarrow \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} \land \frac{\partial Q}{\partial z} = \frac{\partial R}{\partial y} \land \frac{\partial R}{\partial x} = \frac{\partial P}{\partial z}$
-        \item use the contrapos.
-      \end{itemize}
+      \item pot. fn. uniqueness is like antiderivs: $\nabla f = \nabla g = \vec{F} \Rightarrow f = g + C$.
+      \item cross partial property (prove not cons.):
+      \[\vec{F} = \left<P, Q, R\right>\Rightarrow P_y=Q_x \land Q_z=R_y\land R_x=P_z.\]
       \item to prove it is
       \begin{itemize}
         \item use the converse of above, only if $\vec{F}$ is on a open, simply connected region through which the converse holds
       \end{itemize}
     \end{itemize}
-    Line Integrals
+    Finding a Potential Function $f$
     \begin{itemize}
-      \item scalar line integral (along curve in space)
+      \item given $\vec{F}(x,y)=\left<P,Q\right>$,
+    \end{itemize}
+    \vspace{-1em}\begin{align}
+      f &= \int P \,\partial x + g(y) \text{ ($g$, ``a constant'')} \\
+      f_y &= \frac{\partial}{\partial y}(\int P \,\partial x) + g'(y) \text{ taking derivative} \\
+      &= Q \text{ by defn of $\vec{F}$, if it has a pot. fn.} 
+    \end{align}
+    \begin{itemize}
+      \item[] solve for $g$, which finishes $f$, via (2) and (3), usually choosing 0 for the constant after antideriv.
+    \end{itemize}
+
+    Scalar Line Integrals
+    \begin{itemize}
+      \item let $f$ be cont with a domain that includes the smooth curve $C$ with parameterization $\vec{r}(t), a\le t\le b$.
+      \[ \int_C f\, ds = \int_a^b f(\vec{r}(t))\magn{\vec{r}\,'(t)} dt. \]
+      \item idc about reparameterization
+      \item $f=1$ finds arclen
+    \end{itemize}
+  }
+  \col{
+    Vector Line Integrals
+    \begin{itemize}
+      \item recall unit tang. vec $\vec{T}=\frac{\vec{r}\,'(t)}{\magn{\vec{r}\,'(t)}}$. since $ds=\magn{\vec{r}\,'(t)}dt$, we may derive
+      \[ \int_C \vec{F}\cdot\vec{T}ds = \int_a^b \vec{F}(\vec{r}(t))\cdot\vec{r}\,'(t)dt. \]
+      thus, VLIs are often denoted
+      \[\int_C \vec{F}\cdot d\vec{r}.\]
+      also consider that $\vec{F}=\langle P,Q,R \rangle$ and $d\vec{r}=\left<dx,dy,dz\right>$. so, yet another form:
+      \begin{align*}
+        &\int_C Pdx + Qdy + Rdz\\
+        =&\int P(\vec{r(t)}) \frac{dx}{dt} + Q(\vec{r(t)}) \frac{dy}{dt} + R(\vec{r(t)}) \frac{dz}{dt} dt
+      \end{align*}
+      \item TODO where in book?
+      \[\int_{-C}\vec{F}\cdot d\vec{r} = -\int_C \vec{F}\cdot d\vec{r}\]
+      \item if an object moves along $C$ in force field $\vec{F}$, the work req'd to move it is $\int_C \vec{F}\cdot d\vec{r}$.
+    \end{itemize}
+    Flux
+    \begin{itemize}
+      \item flux of $\vec{F}$ across $C$ measures at what rate fluid crosses a curve.
+      \item let $C$ be $\vec{r}(t)=\left<x(t),y(t)\right>, a\le t\le b$.
+      
+      let $\vec{n}(t) = \left<y'(t),-x'(t)\right>$ (the normal pointing right as we traverse the curve).
+
+      let unit normal vec $\vec{N}(t) = \frac{\vec{n}(t)}{\magn{\vec{n}(t)}}$.
+
+      flux is
+      \[\int_C \vec{F}\cdot\vec{N}ds = \int_a^b \vec{F}(\vec{r}(t))\cdot \vec{n}(t)dt\]
+      \item notice the similarity:
+      \begin{align*}
+        \text{LI } & \int_C\vec{F}\cdot\vec{T} ds = \int_C Pdx + Qdy\\
+        \text{flux } & \int_C\vec{F}\cdot\vec{N} ds = \int_C -Qdx + Pdy\\
+      \end{align*}
+    \end{itemize}
+  }
+\end{multicols}
+\newpage
+\begin{multicols}{2}
+  \col{
+    Circulation
+    \begin{itemize}
+      \item a vector LI along an oriented closed curve is called the circulation of $\vec{F}$ along $C$:
+      \[\oint_C \vec{F}\cdot\vec{T} ds \text{ or } \oint_C \vec{F}\cdot d\vec{r}\]
+    \end{itemize}
+    Fundamental Thrm of Line Integrals
+    \begin{itemize}
+      \item similarly to the FTC,
+      \[\int_C \nabla f \cdot d\vec{r} = f(\vec{r}(b))-f(\vec{r}(a)).\]
+      \item so, to find $\int_C \vec{F}\cdot d\vec{r}$,
+      \begin{enumerate}
+        \item find potential fn (``antiderivative'')
+        \item evaluate.
+      \end{enumerate}
+      \item it follows that if $\vec{F}$ is conserv. (has pot. fn.) and $C$ is closed, $\oint_C \vec{F}\cdot d\vec{r}= 0.$
+      \item we also discover path independence: 
       \begin{itemize}
-        \item let $f$ be cont with a domain that includes the smooth curve $C$ with parameterization $\vec{r}(t), a\le t\le b$.
-        \[ \int_C f\, ds = \int_a^b f(\vec{r}(t))\magn{\vec{r}\,'(t)} dt. \]
-        \item idc about reparameterization
-        \item $f=1$ finds arclen
+        \item $\vec{F}$ is conserv. $\Rightarrow \vec{F}$ path indep.
+        \item ie, work by grav is same for 3 hikers who take diff paths but start/end similarly.
+        \item converse is true if domain of $\vec{F}$ is open and connected.
       \end{itemize}
-      \item vector line integral (along oriented curve)
-      \item find work to move object along curve in a vec field
-      \item flux and circulation of a vec field
+    \end{itemize}
+  }
+  \col{
+    Green's Theorem
+    \begin{itemize}
+      \item connects a $\iint_D$ to a $\int_C$ around the boundry of $D$.
+      \item[] \emph{Circulation Form}
+      \item let an open, simply connected region $D$, with piecewise smooth, closed, simple, c.clockwise boundry $C$, with $\vec{F} = \left<P,Q\right>$. (only works with 2D field)
+      \[\oint_C\vec{F}\cdot d\vec{r} = \oint_C Pdx + Qdy = \iint_D(Q_x-P_y)dA\]
+      \item circulation eq. can be expressed with $\vec{T}$. so, this is also called the ``tangential form''
+      \item notice: if $Q_x-P_y=1$, we may use this form to find area. as such, let $\vec{F}=\left<-\frac{y}{2},\frac{x}{2}\right>$. so,
+      \[ \text{Area}(D)=\iint_D1dA = \frac{1}{2}\oint_C -ydx+xdy\]
+      TODO notes say ``left off p724 wtf''
+      \item[] \emph{Flux Form}
+      \item let an open, simply connected region $D$, with piecewise smooth, closed, simple, c.clockwise boundry $C$, with $\vec{F} = \left<P,Q\right>$.
+      \[\oint_C\vec{F}\cdot\vec{N}ds = \oint_C -Qdx+Pdy = \iint_D P_x+Q_y dA.\]
+      \item also called the ``normal form''
+      \item[] \emph{General Form (holed regions)}+
+      \item if you have a region with finitely many holes, you may convert the line integral around its boundry into the double integral anyways lmao.
+      \item ngl this is so cursed TODO go to OH or tutoring to ask about this. \texttt{https://discord.com/channels/1155614843722805258/1155623088382300282/1228731087644004464} is a link to your thread with ryan about this
+    \end{itemize}
+  }
+\end{multicols}
+
+\newpage
+\begin{multicols}{2}
+  \col{
+    Source-Free Fields
+    \begin{itemize}
+      \item notice the similarities with conservative fields: $\vec{F}=\left<P,Q\right>$ is a SFF iff \vspace{-0.5em}
+      \begin{align*}
+        &\text{1. flux} \oint_C\vec{F}\cdot\vec{N}ds = 0\\
+        \text{or }&\text{2. flux indep. of path}\\
+        \text{or }&\text{3. }\exists\text{ a stream fn } g(x,y) \text{ for } \vec{F}\\
+        \text{or }&\text{4. }P_x+Q_y=0
+      \end{align*}
+      \item \vspace{-0.5em}a stream fn for $\vec{F}$ is a fn $g$ st 
+      \[\vec{F} = \left<P,Q\right> = \left<g_y,-g_x\right>.\]
+      geometrically, $\vec{F}=\left<a,b\right>$ is tangent to the level curve of the stream fn $g$ at $(a,b)$. since grad $g$ is $\perp$ to the level curve of $g$, $\vec{F}(a,b)\cdot \nabla g(a,b)=0$ on the domain of $g$.
+
+      it's like a pot. fn. but for SFF
+      \item Laplace Equation: $f_{xx}+f_{yy}\.(+f_{zz})=0$.
+      \item harmonic fns are fns that satisfy Laplace. 
+      
+      the pot fn of $\vec{F}$, $f$, satisfies the Laplace Eq. \\
+      $\iff \exists \vec{F},\vec{F}$ is BOTH conserv. and src free \\
+      $\iff f$ is harmonic
+      
+      proof: if $f$ is both conserv and src free, $\left<P,Q\right> = \left<f_x,f_y\right>$ (by conserv), $f_{xx}+f_{yy}=P_x+Q_y=0.$ (by src free)
+    \end{itemize}
+    Divergence (the scalar)
+    \begin{itemize}
+      \item measures ``outgoingness.''
+      \item or: imagine dropping elastic band into water flow. its change in area is divergence.
+      \item defn. div$\vec{F}=P_x+Q_y+R_z$.
+      \item mnemonic: div$\vec{F}=\nabla\cdot\vec{F}$ since $\nabla$ can be thought as $\left<\frac{\partial}{\partial x},\frac{\partial}{\partial y},\frac{\partial}{\partial z}\right>$
+      \item $\vec{F}$ is src free $\Rightarrow$ div$\vec{F} = 0$.
+      
+      converse is true on simply connected $\vec{F}$.
+      \item by defn of Green's (flux) and diver,
+      \[\oint_C \vec{F}\cdot\vec{N}ds = \iint_D P_x+Q_ydA=\iint_D \text{div}\vec{F}dA.\]
+      notice: if we think of div$\vec{F}$ as a kind of deriv, this looks much like the FTC
+    \end{itemize}
+  }
+  \col{
+    Curl (the vector field)
+    \begin{itemize}
+      \item measure of rotation about a point
+      \item if curl is a vec, it measures the tendency of water near a point to rotate about the axis in the vec's dir
+      \item $\magn{\text{curl}}$ would be how quick the water rotation is about the axis
+      \item imagine paddlewheel. axis is curl vec dir, curl magn is rotation speed
+      \item \raggedright curl$\vec{F}$ = $\left<R_y-Q_z,P_z-R_x,Q_x-P_y\right>$.
+      \item mnemonic: curl$\vec{F}=\nabla\times\vec{F}$
+      
+      intuitively, 2D means curl is only $\hat{k}$ comp
+      \item sim. with div, notice that with Green's (circ) and 2d curl$\vec{F}\cdot\hat{k} = (Q_x-P_y)$,
+      \[\oint_C \vec{F}\cdot d\vec{r} = \iint_D Q_x-P_y \,dA = \iint_D \text{curl}\vec{F}\cdot\hat{k}\,dA\]
+    \end{itemize}
+    Div/Curl Applications
+    \begin{itemize}
+      \item 
     \end{itemize}
   }
 \end{multicols}
@@ -591,6 +773,7 @@ think of moments about axes like how much a lamina wants to rotate about the axi
 
 and then moments of inertia measure how much objects can resist rotation about axes
 
+notice how for both formulas, the integrals sum over how far away each point is from the corresponding axis.
 \subsection*{double integral properties}
 for most properties, just feel it out from single integrals.
 
