@@ -581,7 +581,7 @@
 \end{multicols}
 
 \newpage
-\addsection{Chapter 6: Vector Calc}
+\addsection{Chapter 6: Vector Calc (Exhaustive)}
 \begin{multicols}{2}
   \col{
     Conservative Vector Fields
@@ -593,11 +593,11 @@
       \end{itemize}
       \item pot. fn. uniqueness is like antiderivs: $\nabla f = \nabla g = \vec{F} \Rightarrow f = g + C$.
       \item cross partial property (prove not cons.):
-      \[\vec{F} = \left<P, Q, R\right>\Rightarrow P_y=Q_x \land Q_z=R_y\land R_x=P_z.\]
-      \item to prove it is
-      \begin{itemize}
-        \item use the converse of above, only if $\vec{F}$ is on a open, simply connected region through which the converse holds
-      \end{itemize}
+      \begin{gather*}
+        \vec{F} = \left<P, Q, R\right>\text{ is cons.}\\
+        \Rightarrow P_y=Q_x \land Q_z=R_y\land R_x=P_z.
+      \end{gather*}
+      \item to prove it is: use the converse of above, only if $\vec{F}$ is on a open, simply connected region through which the converse holds
     \end{itemize}
     Finding a Potential Function $f$
     \begin{itemize}
@@ -630,9 +630,9 @@
       also consider that $\vec{F}=\langle P,Q,R \rangle$ and $d\vec{r}=\left<dx,dy,dz\right>$. so, yet another form:
       \begin{align*}
         &\int_C Pdx + Qdy + Rdz\\
-        =&\int P(\vec{r(t)}) \frac{dx}{dt} + Q(\vec{r(t)}) \frac{dy}{dt} + R(\vec{r(t)}) \frac{dz}{dt} dt
+        =&\int P(\vec{r}(t)) \frac{dx}{dt} + Q(\vec{r}(t)) \frac{dy}{dt} + R(\vec{r}(t)) \frac{dz}{dt} dt
       \end{align*}
-      \item TODO where in book?
+      \item vector LIs are reversible
       \[\int_{-C}\vec{F}\cdot d\vec{r} = -\int_C \vec{F}\cdot d\vec{r}\]
       \item if an object moves along $C$ in force field $\vec{F}$, the work req'd to move it is $\int_C \vec{F}\cdot d\vec{r}$.
     \end{itemize}
@@ -649,7 +649,7 @@
       \[\int_C \vec{F}\cdot\vec{N}ds = \int_a^b \vec{F}(\vec{r}(t))\cdot \vec{n}(t)dt\]
       \item notice the similarity:
       \begin{align*}
-        \text{LI } & \int_C\vec{F}\cdot\vec{T} ds = \int_C Pdx + Qdy\\
+        \text{circ/LI } & \int_C\vec{F}\cdot\vec{T} ds = \int_C Pdx + Qdy\\
         \text{flux } & \int_C\vec{F}\cdot\vec{N} ds = \int_C -Qdx + Pdy\\
       \end{align*}
     \end{itemize}
@@ -691,12 +691,11 @@
       \item circulation eq. can be expressed with $\vec{T}$. so, this is also called the ``tangential form''
       \item notice: if $Q_x-P_y=1$, we may use this form to find area. as such, let $\vec{F}=\left<-\frac{y}{2},\frac{x}{2}\right>$. so,
       \[ \text{Area}(D)=\iint_D1dA = \frac{1}{2}\oint_C -ydx+xdy\]
-      TODO notes say ``left off p724 wtf''
       \item[] \emph{Flux Form}
       \item let an open, simply connected region $D$, with piecewise smooth, closed, simple, c.clockwise boundry $C$, with $\vec{F} = \left<P,Q\right>$.
       \[\oint_C\vec{F}\cdot\vec{N}ds = \oint_C -Qdx+Pdy = \iint_D P_x+Q_y dA.\]
       \item also called the ``normal form''
-      \item[] \emph{General Form (holed regions)}+
+      \item[] \emph{General Form (holed regions)}
       \item if you have a region with finitely many holes, you may convert the line integral around its boundry into the double integral anyways lmao.
       \item ngl this is so cursed TODO go to OH or tutoring to ask about this. \texttt{https://discord.com/channels/1155614843722805258/1155623088382300282/1228731087644004464} is a link to your thread with ryan about this
     \end{itemize}
@@ -759,10 +758,134 @@
     \end{itemize}
     Div/Curl Applications
     \begin{itemize}
-      \item 
+      \item defn: div curl$\vec{F} = 0$. (3d)
+      \item consider curl test: let curl$\vec{F}$ = a field $\vec{G}$.
+      \begin{gather*}
+        \exists \vec{F}\Rightarrow\text{ div curl}\vec{F} = 0 \\
+        \iff \text{div}\vec{G}\ne 0 \Rightarrow\vec{G} \text{ cannot be curl}\vec{F}
+      \end{gather*}
+      \item if $\vec{F}$ is conserv, $\vec{F}$ is irrotational ie curl$\vec{F}=0$. (by the cross prod prop.)
+      \begin{itemize}
+        \item converse true on simpl conn domain
+      \end{itemize}
+      \item what about div of a conserv (a gradient)?
+      \begin{itemize}
+        \item div$(\nabla f) = \nabla\cdot(\nabla f)$ abbreviated $\nabla^2 f$
+        \item so, harmonic iff $\nabla ^2 f = 0$.
+        \item fun fact: potfn of electrostatic field in a region with no static charge is harmonic
+      \end{itemize}
     \end{itemize}
   }
 \end{multicols}
+
+\newpage
+\begin{multicols}{2}
+  \col{
+    Surface Integrals
+    \begin{itemize}
+      \item you can parameterize a 2d surface with height $z=f(x,y)$ with $\vec{r}(x,y) = \left<x,y,z(x,y)\right>$.
+      \item a surface parameterization is regular (actually a 3d surface and not, like, a line) and smooth if $\vec{r}_u \times \vec{r}_v \ne 0$
+      \item define a scalar surface integral as follows:
+      \[ \iint_S f(x,y,z)dS = \iint_D f(\vec{r}(u,v))\magn{\vec{r}_u\times\vec{r}_v}dA \]
+      \item a surface is orientable if you can separate an ``outer'' and ``inner'' side. some surfaces (like mobius strip) are not.
+      \begin{itemize}
+        \item recall: any curve can have forward/backward orientation
+        \item the choice of unit normal vec $\vec{N}=\frac{\vec{r}_u\times\vec{r}_v}{\magn{{\vec{r}_u\times\vec{r}_v}}}$ gives an orientation.
+      \end{itemize}
+      \item let $\vec{F}$ by a cont vec field with a dom that contains oriented surface $S$ with unit norm vec $N$. the vector surface integral of $F$ over $S$ is 
+      \begin{gather*}
+        \iint_S \vec{F}\cdot d\vec{S} = \iint_S \vec{F}\cdot\vec{N}dS \\
+        = \iint_D \vec{F}(\vec{r}(u,v))\cdot(\vec{r}_u \times\vec{r}_v) dA
+      \end{gather*}
+      This is sort of like flux.
+    \end{itemize}
+  }
+  \col{
+    Stokes' Theorem
+    \begin{itemize}
+      \item a higher-dimensional general. of Green's theorem. it's also like FTC.
+      \item relates vector surface integral over surface of a line integral around its boundry.
+      \item let $S$ be an oriented smooth surface with un norm vec $\vec{N}$. suppose boundry of $S$ is a simple closed curve $C$. orientation of $S$ induces positive orientation of $C$ if, walking in positive dir of $C$ with head pointed $\vec{N}$, surface is on left.
+      \item Stokes': let $S$ be a piecewise smooth oriented surface with a boundary, a simple closed curve $C$ with positive orientation. 
+      \[ \oint_C \vec{F}\cdot d\vec{r} = \iint_S \text{curl}\vec{F}\cdot d\vec{S} \]
+      \item what the FUCK is surface independence (p787)
+    \end{itemize}
+    Divergence Theorem
+    \begin{itemize}
+      \item relates flux integral of field over surface $S$ to a triple integral of the divergence of the field over the solid enclosed by $S$.
+      \item Let $S$ be a piecewise smooth close surface enclosing solid $E$. Assume $S$ oriented outward, let $F$ be a field. Then
+      \[ \iiint_E \text{div}\vec{F}dV = \iint_S \vec{F}\cdot d\vec{S} \]
+    \end{itemize}
+  }
+\end{multicols}
+
+\newpage
+\addsection{Chapter 6: Vector Calc (Formula sheet)}
+\begin{itemize}
+  \item simple curve: no crossings. simply connected region: no holes.
+  \item field $\vec{F}$ is a gradient iff $\exists \text{ potential function } f, \nabla f = \vec{F}$. be able to find pot. fns.
+  \item cross partial prop.: $\vec{F} = \left<P, Q, R\right>\text{ is cons.} \Rightarrow P_y=Q_x \land Q_z=R_y\land R_x=P_z$
+  \begin{itemize}
+    \item converse true on open, simply connected field
+  \end{itemize}
+  \item scalar line integral: $\int_C f\, ds = \int_a^b f(\vec{r}(t))\magn{\vec{r}\,'(t)} dt$
+  \item vector line integral: $\int_C \vec{F}\cdot d\vec{r} = \int_C \vec{F}\cdot\vec{T}ds = \int_a^b \vec{F}(\vec{r}(t))\cdot\vec{r}\,'(t)dt = \int_C Pdx + Qdy$
+  \begin{multicols}{2}
+    \begin{itemize}
+      \item reversible: $\int_{-C}\vec{F}\cdot d\vec{r} = -\int_C \vec{F}\cdot d\vec{r}$
+      \item measures work along $C$ in $\vec{F}$
+      \item circulation is this, on a closed curve. \\ denoted with $\oint$
+    \end{itemize}
+  \end{multicols}
+  \vspace*{-1em}
+  \item flux, rate of fluid crossing 2d curve: $\int_C \vec{F}\cdot\vec{N}ds = \int_a^b \vec{F}(\vec{r}(t))\cdot \vec{n}(t)dt = \int_C -Qdx + Pdy$
+  \item FTLI: $\int_C \nabla f \cdot d\vec{r} = f(\vec{r}(b))-f(\vec{r}(a))$ (notice: $\vec{F}$ is conserv. $\Rightarrow \vec{F}$ path indep ($\Leftarrow$ if open\&conn))
+  \item Green's (2D): open $D$ and piecewise smooth closed simple c.clockwise $C$
+  \begin{itemize}
+    \item $\oint_C\vec{F}\cdot\vec{T}ds = \oint_C Pdx + Qdy = \iint_D Q_x-P_y dA = \iint_D \text{curl}\vec{F}\cdot\hat{k}dA$ (circulation form)
+    \item $\oint_C\vec{F}\cdot\vec{N}ds = \oint_C -Qdx+Pdy = \iint_D P_x+Q_y dA = \iint_D \text{div}\vec{F}dA$ (flux form)
+    \item consider $\vec{F}=\left<-\frac{y}{2},\frac{x}{2}\right>$. $\text{Area}(D)=\iint_D1dA = \frac{1}{2}\oint_C -ydx+xdy$
+  \end{itemize}
+  \item $\vec{F}$ is source free field iff 
+  \begin{itemize}
+    \item $\text{flux} \oint_C\vec{F}\cdot\vec{N}ds = 0 \lor \text{flux indep. of path} \lor \exists\text{ a stream fn } g(x,y) \text{ for } \vec{F} \lor P_x+Q_y=0$
+    \item define stream fn $g$ s.t. $\vec{F} = \left<P,Q\right> = \left<g_y,-g_x\right>$
+    \item pot fn of $\vec{F}$ satisfies Laplace ($f_{xx}+f_{yy}(+f_{zz})=0$) iff $\vec{F}$ conserv. \& src free iff $f$ harmonic
+  \end{itemize}
+  \begin{multicols}{2}
+    \item divergence, outgoingness: div$\vec{F}=\nabla \cdot \vec{F}$
+    \item $\vec{F}$ is src free $\Rightarrow$ div$\vec{F} = 0$ ($\Leftarrow$ if simpl conn $\vec{F}$)
+    \item curl, paddlewheel: curl$\vec{F} = \nabla \times \vec{F}$
+    \item defn: div curl$\vec{F} = 0.$ test for curl.
+    \item $\vec{F}$ conserv $\Rightarrow$ curl$\vec{F}=0$
+    \item harmonic iff $\nabla^2 f = \text{div}(\nabla f)=0$
+  \end{multicols}
+  \vspace*{-1em}
+  \item scalar surface integral: $\iint_S f(x,y,z)dS = \iint_D f(\vec{r}(u,v))\magn{\vec{r}_u\times\vec{r}_v}dA$
+  \item vector surface integral: $\iint_S \vec{F}\cdot d\vec{S} = \iint_S \vec{F}\cdot\vec{N}dS = \iint_D \vec{F}(\vec{r}(u,v))\cdot(\vec{r}_u \times\vec{r}_v) dA$ (like flux)
+  \item Stokes': $\oint_C \vec{F}\cdot d\vec{r} = \iint_S \text{curl}\vec{F}\cdot d\vec{S}$ what the FUCK is surface independence (p787)
+  \begin{itemize}
+    \item also what the FUCK is positive orientation for stokes surfaces
+  \end{itemize}
+  \item divergence thrm: $\oint_C \vec{F}\cdot\vec{N}ds = \iint_D P_x+Q_ydA=\iint_D \text{div}\vec{F}dA$
+  
+  
+  
+
+  % \item notice the similarities with conservative fields: $\vec{F}=\left<P,Q\right>$ is a SFF iff \vspace{-0.5em}
+  % \begin{align \text{1. flux} \oint_C\vec{F}\cdot\vec{N}ds = 0 \text{or }&\text{2. flux indep. of path} \text{or }&\text{3. }\exists\text{ a stream fn } g(x,y) \text{ for } \vec{F} \text{or }&\text{4. }P_x+Q_y=0
+  % \end{align*}
+
+
+\end{itemize}
+% \begin{multicols}{2}
+%   \col{
+%     \begin{itemize}
+%       \item 
+%     \end{itemize}
+%   }
+% \end{multicols}
+
 
 \newpage
 \addsection{Appendix} 
