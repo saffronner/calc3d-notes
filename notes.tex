@@ -697,7 +697,7 @@
       \item also called the ``normal form''
       \item[] \emph{General Form (holed regions)}
       \item if you have a region with finitely many holes, you may convert the line integral around its boundry into the double integral anyways lmao.
-      \item ngl this is so cursed TODO go to OH or tutoring to ask about this. \texttt{https://discord.com/channels/1155614843722805258/1155623088382300282/1228731087644004464} is a link to your thread with ryan about this
+      \item subtract out any contributions of the empty regions
     \end{itemize}
   }
 \end{multicols}
@@ -753,6 +753,9 @@
       \item mnemonic: curl$\vec{F}=\nabla\times\vec{F}$
       
       intuitively, 2D means curl is only $\hat{k}$ comp
+      \item $\vec{F}$ is conserv $\Rightarrow$ curl$\vec{F} = 0$.
+      
+      converse is true on simply connected $\vec{F}$.
       \item sim. with div, notice that with Green's (circ) and 2d curl$\vec{F}\cdot\hat{k} = (Q_x-P_y)$,
       \[\oint_C \vec{F}\cdot d\vec{r} = \iint_D Q_x-P_y \,dA = \iint_D \text{curl}\vec{F}\cdot\hat{k}\,dA\]
     \end{itemize}
@@ -764,7 +767,6 @@
         \exists \vec{F}\Rightarrow\text{ div curl}\vec{F} = 0 \\
         \iff \text{div}\vec{G}\ne 0 \Rightarrow\vec{G} \text{ cannot be curl}\vec{F}
       \end{gather*}
-      \item if $\vec{F}$ is conserv, $\vec{F}$ is irrotational ie curl$\vec{F}=0$. (by the cross prod prop.)
       \begin{itemize}
         \item converse true on simpl conn domain
       \end{itemize}
